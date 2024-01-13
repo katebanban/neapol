@@ -1,0 +1,190 @@
+.header {
+	padding: 34px 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 55;
+
+	@media (max-width: 1024px) {
+		padding: 25px 0;
+	}
+
+	&::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		right: -100%;
+		width: 100%;
+		background: #492f1f;
+		transition: right 0.5s;
+		z-index: 1;
+	}
+
+	&.active {
+		&::before {
+			right: 0;
+		}
+	}
+
+	&__body {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	&__logo {
+		position: relative;
+		z-index: 2;
+		flex-shrink: 0;
+		transition: all 0.5s;
+
+		@media (max-width: 1024px) {
+			width: 150px;
+		}
+
+		&:hover {
+			transform: scale(1.1);
+		}
+
+		&:not(:last-child) {
+			margin-right: 15px;
+		}
+
+		img {
+			display: block;
+		}
+	}
+
+	&__menu {
+	}
+}
+
+.menu {
+	@media (max-width: 1024px) {
+		position: absolute;
+		top: 0;
+		right: -100%;
+		width: 100%;
+		height: 100vh;
+		padding: 135px 0 50px;
+		background: #492f1f;
+		overflow: auto;
+		transition: right 0.5s;
+
+		&.active {
+			right: 0;
+		}
+	}
+
+	&__list {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px 30px;
+
+		@media (max-width: 1024px) {
+			flex-wrap: nowrap;
+			flex-direction: column;
+			align-items: center;
+		}
+	}
+
+	&__item {
+	}
+
+	&__link {
+		text-decoration: none;
+		color: inherit;
+		position: relative;
+		transition: all 0.5s;
+
+		&::after {
+			content: "";
+			width: 0;
+			height: 2px;
+			background: #fdd486;
+			position: absolute;
+			bottom: -4px;
+			left: 0;
+			transition: all 0.5s;
+		}
+
+		&:hover {
+			color: #fdd486;
+
+			&::after {
+				width: 100%;
+
+				@media (max-width: 1024px) {
+					display: none;
+				}
+			}
+		}
+	}
+}
+
+.menu-btn {
+	padding: 0;
+	display: none;
+	position: relative;
+	z-index: 2;
+	width: 40px;
+	height: 30px;
+	border: none;
+	background: transparent;
+
+	@media (max-width: 1024px) {
+		display: block;
+	}
+
+	span {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		left: 0;
+		width: 100%;
+		height: 2px;
+		background: #fdd486;
+		transition: all 0.5s;
+	}
+
+	&::before,
+	&::after {
+		content: "";
+		position: absolute;
+		left: 0;
+		width: 100%;
+		height: 2px;
+		background: #fdd486;
+		transition: all 0.5s;
+	}
+
+	&::before {
+		top: 0;
+	}
+
+	&::after {
+		bottom: 0;
+	}
+
+	&.active {
+		span {
+			opacity: 0;
+		}
+
+		&:before {
+			top: 50%;
+			transform: translateY(-50%) rotate(45deg);
+		}
+
+		&::after {
+			bottom: unset;
+			top: 50%;
+			transform: translateY(-50%) rotate(-45deg);
+		}
+	}
+}
